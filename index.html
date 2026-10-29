@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Integer Island: Grade 7 Math Module</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f8fb;--card:#fff;--ink:#16293b;--mute:#5b6f80;--cool:#2f7fd1;--coolbg:#dcecfa;--warm:#e8751a;--warmbg:#fde8d3;--ok:#1f9d63;--okbg:#d9f3e6;--bad:#d1383b;--badbg:#fbdcdc;--line:#d5e0e8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1c27;--card:#172a38;--ink:#e8f1f7;--mute:#9db3c4;--cool:#6aaaf0;--coolbg:#1c3a58;--warm:#ff9a4d;--warmbg:#4a2c14;--ok:#4cd391;--okbg:#14402d;--bad:#ff7b7e;--badbg:#4a1d1f;--line:#2a4254}}
+:root[data-theme="dark"]{--bg:#0f1c27;--card:#172a38;--ink:#e8f1f7;--mute:#9db3c4;--cool:#6aaaf0;--coolbg:#1c3a58;--warm:#ff9a4d;--warmbg:#4a2c14;--ok:#4cd391;--okbg:#14402d;--bad:#ff7b7e;--badbg:#4a1d1f;--line:#2a4254}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:500 17px/1.6 Nunito,system-ui,sans-serif}
+h1,h2,h3{font-family:Fredoka,system-ui,sans-serif;line-height:1.2;margin:0 0 .5em}
+header{padding:28px 20px 8px;max-width:860px;margin:auto}
+h1{font-size:clamp(2rem,6vw,3.2rem);font-weight:700}
+h1 .n{color:var(--cool)}h1 .p{color:var(--warm)}
+.sub{color:var(--mute);margin:0}
+nav{display:flex;gap:8px;max-width:860px;margin:16px auto 0;padding:0 20px;overflow-x:auto}
+nav button{font:700 16px Nunito,sans-serif;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:10px 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
+nav button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+main{max-width:860px;margin:auto;padding:16px 20px 60px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:22px;margin-bottom:16px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--warm);outline-offset:2px}
+.btn{font:700 16px Nunito,sans-serif;background:var(--cool);color:#fff;border:0;padding:11px 20px;border-radius:12px;cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sp{justify-content:space-between}
+.tag{display:inline-block;padding:2px 10px;border-radius:8px;font-weight:800}
+.neg{background:var(--coolbg);color:var(--cool)}.pos{background:var(--warmbg);color:var(--warm)}
+.box{border-left:5px solid var(--warm);background:var(--warmbg);padding:10px 14px;border-radius:0 10px 10px 0;margin:12px 0}
+.box.c{border-color:var(--cool);background:var(--coolbg)}
+table{border-collapse:collapse;width:100%;text-align:center}
+td,th{border:2px solid var(--line);padding:8px}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}.dots i.on{background:var(--warm)}
+input[type=number],select{font:700 18px Nunito,sans-serif;width:84px;padding:8px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+select{width:auto}
+input[type=range]{width:100%;accent-color:var(--warm)}
+svg{width:100%;height:auto;display:block}
+svg text{fill:var(--ink);font:700 13px Nunito,sans-serif}
+.big{font:700 2rem Fredoka,sans-serif}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.opts button{font:800 20px Fredoka,sans-serif;padding:14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.opts button.ok{background:var(--okbg);border-color:var(--ok)}.opts button.no{background:var(--badbg);border-color:var(--bad)}
+.fb{min-height:3em;font-weight:700}
+.bar{height:12px;border-radius:8px;background:var(--line);overflow:hidden}.bar b{display:block;height:100%;background:var(--ok);width:0;transition:width .4s}
+.stat{flex:1;min-width:120px;text-align:center;background:var(--bg);border-radius:12px;padding:12px}
+.stat b{display:block;font:700 1.8rem Fredoka,sans-serif}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+<h1><span class="n">Integer</span> <span class="p">Island</span></h1>
+<p class="sub">A Grade 7 math module: learn, explore, and practice positive and negative numbers.</p>
+</header>
+<nav role="tablist" id="tabs">
+<button role="tab" data-t="learn" aria-selected="true">Lessons</button>
+<button role="tab" data-t="explore" aria-selected="false">Number line</button>
+<button role="tab" data-t="quiz" aria-selected="false">Practice</button>
+<button role="tab" data-t="prog" aria-selected="false">My progress</button>
+</nav>
+<main>
+<section id="learn"></section>
+<section id="explore" hidden>
+<div class="card">
+<h2>Number line explorer</h2>
+<p>Pick a starting number, choose add or subtract, and press Play to watch the hops.</p>
+<div class="row">
+<input id="a" type="number" value="3" min="-10" max="10" aria-label="Start number">
+<select id="op" aria-label="Operation"><option value="+">+ add</option><option value="-">− subtract</option></select>
+<input id="b" type="number" value="-5" min="-10" max="10" aria-label="Second number">
+<button class="btn" id="play">Play</button>
+</div>
+<svg id="nl" viewBox="0 0 700 120" role="img" aria-label="Number line from negative 10 to 10"></svg>
+<div class="big" id="eq" aria-live="polite">3 + (−5) = ?</div>
+<div class="box c" id="why">Adding a negative number moves you left.</div>
+</div>
+</section>
+<section id="quiz" hidden>
+<div class="card" id="qstart">
+<h2>Practice time</h2>
+<p>10 questions. Pick a topic or mix them all.</p>
+<div class="row"><select id="topic" aria-label="Topic">
+<option value="all">Mixed</option><option value="cmp">Compare and order</option><option value="abs">Absolute value</option><option value="add">Adding</option><option value="sub">Subtracting</option><option value="mul">Multiplying</option><option value="div">Dividing</option></select>
+<button class="btn" id="go">Start</button></div>
+</div>
+<div class="card" id="qbox" hidden>
+<div class="row sp"><span id="qn"></span><span id="qs"></span></div>
+<div class="bar" aria-hidden="true"><b id="qbar"></b></div>
+<h2 id="qt" style="margin-top:18px"></h2>
+<div class="opts" id="opts"></div>
+<div class="fb" id="fb" aria-live="polite"></div>
+<button class="btn" id="next" hidden>Next question</button>
+</div>
+<div class="card" id="qend" hidden>
+<h2 id="endh"></h2><p id="endp"></p>
+<button class="btn" id="again">Try again</button>
+</div>
+</section>
+<section id="prog" hidden>
+<div class="card"><h2>My progress</h2>
+<div class="row" id="stats"></div>
+<p id="pmsg" class="sub" style="margin-top:14px"></p>
+</div>
+</section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const f=n=>n<0?'\u2212'+Math.abs(n):''+n;
+const p=n=>n<0?'('+f(n)+')':''+n;
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const st={seen:new Set(),done:0,correct:0,best:0,runs:0};
+
+/* Tabs */
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('#tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));
+ ['learn','explore','quiz','prog'].forEach(id=>$('#'+id).hidden=id!==b.dataset.t);
+ if(b.dataset.t==='prog')renderProg();
+});
+
+/* Lessons */
+const L=[
+{t:'1. What are integers?',h:()=>`<p>Integers are whole numbers that can be positive, negative, or zero. Think of a thermometer: <span class="tag pos">+5°</span> is warm, <span class="tag neg">−5°</span> is freezing, and 0 is right in the middle.</p>
+<div class="box">Every integer has an <b>opposite</b> (same distance from zero, other side). The distance from zero is its <b>absolute value</b>, written |n|.</div>
+<p>Slide to try it:</p><input type="range" id="sl" min="-10" max="10" value="4" aria-label="Pick an integer">
+<svg id="l1" viewBox="0 0 700 90" role="img" aria-label="Number line with chosen number and its opposite"></svg>
+<p id="o1" class="big"></p>`,i:()=>{const s=$('#sl');const u=()=>{const n=+s.value;line($('#l1'),[{v:n,c:n<0?'var(--cool)':'var(--warm)'},{v:-n,c:'var(--mute)',r:6}]);$('#o1').innerHTML=`Number: ${f(n)}<br>Opposite: ${f(-n)}<br>|${f(n)}| = ${Math.abs(n)}`};s.oninput=u;u()}},
+{t:'2. Adding integers',h:()=>`<p>Start at the first number. Adding a positive hops <b>right</b>. Adding a negative hops <b>left</b>.</p>
+<div class="box"><b>Same signs:</b> add the sizes, keep the sign.<br>(−3) + (−4) = −7<br><b>Different signs:</b> subtract the smaller size from the larger, keep the sign of the larger.<br>(−8) + 5 = −3</div>
+<p>Try it in the <b>Number line</b> tab to see each hop.</p>`},
+{t:'3. Subtracting integers',h:()=>`<p>Subtracting is the same as <b>adding the opposite</b>.</p>
+<div class="box c">7 − 3 = 7 + (−3) = 4<br>5 − (−2) = 5 + 2 = 7<br>(−4) − 6 = (−4) + (−6) = −10</div>
+<p>Remember: two negatives side by side, like − (−2), turn into a plus.</p>`},
+{t:'4. Multiplying and dividing',h:()=>`<p>Multiplication and division share the same sign rules. Tap a pair to see the sign of the answer.</p>
+<table><tr><th>Signs</th><th>Answer</th><th>Example</th></tr>
+<tr><td>+ and +</td><td class="pos">+</td><td>3 × 4 = 12</td></tr>
+<tr><td>− and −</td><td class="pos">+</td><td>(−3) × (−4) = 12</td></tr>
+<tr><td>+ and −</td><td class="neg">−</td><td>3 × (−4) = −12</td></tr>
+<tr><td>− and +</td><td class="neg">−</td><td>(−12) ÷ 4 = −3</td></tr></table>
+<div class="box">Same signs give a positive. Different signs give a negative.</div>`}
+];
+let li=0;
+function renderLesson(){
+ const l=L[li];st.seen.add(li);
+ $('#learn').innerHTML=`<div class="card"><div class="row sp"><h2>${l.t}</h2><div class="dots" aria-label="Lesson ${li+1} of 4">${L.map((_,i)=>`<i class="${i===li?'on':''}"></i>`).join('')}</div></div>${l.h()}
+ <div class="row sp" style="margin-top:16px"><button class="btn alt" id="pv" ${li?'':'disabled'}>Back</button><button class="btn" id="nx">${li<3?'Next lesson':'Go practice'}</button></div></div>`;
+ $('#pv').onclick=()=>{li--;renderLesson()};
+ $('#nx').onclick=()=>{if(li<3){li++;renderLesson();scrollTo(0,0)}else document.querySelector('[data-t=quiz]').click()};
+ if(l.i)l.i();
+}
+
+/* Number line */
+function line(svg,pts){
+ let s='<line x1="30" y1="50" x2="670" y2="50" stroke="var(--mute)" stroke-width="3"/>';
+ for(let i=-10;i<=10;i++){const x=350+i*30;s+=`<line x1="${x}" y1="${i===0?38:43}" x2="${x}" y2="${i===0?62:57}" stroke="var(--mute)" stroke-width="2"/><text x="${x}" y="80" text-anchor="middle" ${i<0?'style="fill:var(--cool)"':i>0?'style="fill:var(--warm)"':''}>${f(i)}</text>`}
+ pts.forEach(q=>{s+=`<circle class="pt" cx="${350+q.v*30}" cy="50" r="${q.r||11}" fill="${q.c}" stroke="var(--card)" stroke-width="3"/>`});
+ svg.innerHTML=s;
+}
+let timer;
+function play(){
+ clearInterval(timer);
+ const a=Math.max(-10,Math.min(10,+$('#a').value||0)),b=Math.max(-10,Math.min(10,+$('#b').value||0)),op=$('#op').value;
+ const d=op==='+'?b:-b,end=a+d;
+ $('#eq').textContent=`${f(a)} ${op==='+'?'+':'\u2212'} ${p(b)} = ?`;
+ $('#why').textContent=op==='+'?(b>=0?'Adding a positive number moves you right.':'Adding a negative number moves you left.'):(b>=0?'Subtracting a positive is the same as adding its opposite, so you move left.':'Subtracting a negative is the same as adding a positive, so you move right.');
+ let pos=a,steps=Math.abs(d),dir=Math.sign(d);
+ const draw=()=>{line($('#nl'),[{v:a,c:'var(--mute)',r:6},{v:pos,c:pos<0?'var(--cool)':'var(--warm)'}])};draw();
+ if(!steps){$('#eq').textContent=`${f(a)} ${op==='+'?'+':'\u2212'} ${p(b)} = ${f(end)}`;return}
+ timer=setInterval(()=>{pos+=dir;draw();if(pos===end){clearInterval(timer);$('#eq').textContent=`${f(a)} ${op==='+'?'+':'\u2212'} ${p(b)} = ${f(end)}`}},matchMedia('(prefers-reduced-motion:reduce)').matches?0:380);
+}
+$('#play').onclick=play;line($('#nl'),[{v:3,c:'var(--warm)'}]);
+
+/* Quiz */
+let Q=[],qi=0,sc=0,streak=0,locked=false;
+const types=['cmp','abs','add','sub','mul','div'];
+function make(t){
+ if(t==='all')t=types[R(0,5)];
+ let q,ans,ex;
+ if(t==='add'){const a=R(-12,12),b=R(-12,12);q=`${f(a)} + ${p(b)} = ?`;ans=a+b;ex=a*b<0?'Different signs: subtract the sizes and keep the sign of the larger.':'Same signs: add the sizes and keep the sign.'}
+ else if(t==='sub'){const a=R(-12,12),b=R(-12,12);q=`${f(a)} \u2212 ${p(b)} = ?`;ans=a-b;ex=`Add the opposite: ${f(a)} + ${p(-b)} = ${f(ans)}.`}
+ else if(t==='mul'){const a=R(-9,9),b=R(-9,9);q=`${p(a)} \u00d7 ${p(b)} = ?`;ans=a*b;ex=(a<0)===(b<0)?'Same signs give a positive answer.':'Different signs give a negative answer.'}
+ else if(t==='div'){const b=R(-9,9)||3,c=R(-9,9);q=`${p(b*c)} \u00f7 ${p(b)} = ?`;ans=c;ex=(b<0)===(c<0)?'Same signs give a positive answer.':'Different signs give a negative answer.'}
+ else if(t==='abs'){const a=R(-15,15);q=`|${f(a)}| = ?`;ans=Math.abs(a);ex='Absolute value is the distance from zero, so it is never negative.'}
+ else{let a=R(-12,12),b=R(-12,12);while(a===b)b=R(-12,12);q=`Which number is greater: ${f(a)} or ${f(b)}?`;ans=Math.max(a,b);ex='On the number line, the number farther right is greater.';
+  return{q,ans,o:[a,b].concat([]),ex}}
+ const s=new Set([ans]);let g=0;while(s.size<4&&g++<50){const c=[ans+R(1,3),ans-R(1,3),-ans,ans+R(4,6)][R(0,3)];if(c!==ans)s.add(c)}
+ let k=10;while(s.size<4)s.add(ans+k++);
+ return{q,ans,o:[...s].sort(()=>Math.random()-.5),ex};
+}
+function start(){
+ const t=$('#topic').value;Q=Array.from({length:10},()=>make(t));qi=0;sc=0;streak=0;
+ $('#qstart').hidden=true;$('#qend').hidden=true;$('#qbox').hidden=false;show();
+}
+function show(){
+ const q=Q[qi];locked=false;
+ $('#qn').textContent=`Question ${qi+1} of 10`;$('#qs').textContent=`Score: ${sc}`;
+ $('#qbar').style.width=(qi/10*100)+'%';$('#qt').textContent=q.q;$('#fb').textContent='';$('#next').hidden=true;
+ $('#opts').innerHTML='';
+ q.o.forEach(v=>{const b=document.createElement('button');b.textContent=f(v);b.onclick=()=>pick(b,v);$('#opts').appendChild(b)});
+}
+function pick(b,v){
+ if(locked)return;locked=true;const q=Q[qi];st.done++;
+ if(v===q.ans){b.classList.add('ok');sc++;st.correct++;streak++;st.best=Math.max(st.best,streak);$('#fb').textContent='Correct! '+q.ex}
+ else{b.classList.add('no');streak=0;[...$('#opts').children].forEach(x=>{if(x.textContent===f(q.ans))x.classList.add('ok')});$('#fb').textContent=`Not quite. The answer is ${f(q.ans)}. ${q.ex}`}
+ $('#qs').textContent=`Score: ${sc}`;
+ $('#next').hidden=false;$('#next').textContent=qi<9?'Next question':'See my score';$('#next').focus();
+}
+$('#next').onclick=()=>{if(qi<9){qi++;show()}else end()};
+function end(){
+ st.runs++;$('#qbox').hidden=true;$('#qend').hidden=false;
+ $('#endh').textContent=`You scored ${sc} out of 10`;
+ $('#endp').textContent=sc>=9?'Excellent work! You have a strong grip on integers.':sc>=6?'Good job! Review the lesson for the ones you missed and try again.':'Keep going. Revisit the lessons and use the number line, then try again.';
+}
+$('#go').onclick=start;$('#again').onclick=()=>{$('#qend').hidden=true;$('#qstart').hidden=false};
+
+/* Progress */
+function renderProg(){
+ const acc=st.done?Math.round(st.correct/st.done*100):0;
+ $('#stats').innerHTML=[['Lessons viewed',st.seen.size+' / 4'],['Questions answered',st.done],['Accuracy',acc+'%'],['Best streak',st.best]].map(x=>`<div class="stat"><b>${x[1]}</b>${x[0]}</div>`).join('');
+ $('#pmsg').textContent=st.done?(acc>=80?'You are mastering this topic. Try the mixed practice again for a new set.':'Revisit the lessons and number line, then practice a single topic.'):'Finish a lesson and answer a few questions to see your progress here.';
+}
+renderLesson();
+</script>
+</body>
+</html>
